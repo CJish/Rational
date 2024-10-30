@@ -24,10 +24,10 @@
             return returnString;
         }
 
-        public void Negate(Rational r)
+        public void Negate()
         {
-            r.numerator = r.numerator * (-1);
-            r.denominator = r.denominator * (-1);
+            numerator = numerator * (-1);
+            denominator = denominator * (-1);
         }
 
         public void Invert(Rational r)
@@ -64,7 +64,7 @@
             return a;
         }
 
-        public string Add(Rational r1, Rational r2)
+        public static string Add(Rational r1, Rational r2)
         {
             string returnString;
             int GCD;
@@ -91,8 +91,6 @@
 
             Rational newRational = new Rational();
 
-
-
             newRational.numerator = this.numerator + r2.numerator;
             newRational.denominator = this.denominator + r2.denominator;
 
@@ -116,7 +114,7 @@
 
             Console.WriteLine(rational1.WriteRational(rational1));
 
-            rational1.Negate(rational1);
+            rational1.Negate();
             Console.WriteLine(rational1.WriteRational(rational1));
 
             rational1.Invert(rational1);
@@ -127,7 +125,7 @@
 
             Console.WriteLine(rational1.Reduce(rational1));
 
-            Console.WriteLine(rational1.Add(rational1, rational2));
+            Console.WriteLine(Rational.Add(rational1, rational2));
             Console.WriteLine(rational1.Add2(rational2));
         }
     }
