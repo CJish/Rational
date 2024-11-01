@@ -17,9 +17,9 @@
             this.denominator = denom;
         }
 
-        public string WriteRational(Rational r)
+        public string WriteRational()
         {
-            string returnString = "numerator: " + r.numerator + "\tdenominator: " + r.denominator;
+            string returnString = "numerator: " + numerator + "\tdenominator: " + denominator;
 
             return returnString;
         }
@@ -30,28 +30,28 @@
             denominator = denominator * (-1);
         }
 
-        public void Invert(Rational r)
+        public void Invert()
         {
             int temp;
-            temp = r.denominator;
-            r.denominator = r.numerator;
-            r.numerator = temp;
+            temp = denominator;
+            denominator = numerator;
+            numerator = temp;
         }
 
-        public double ToDouble(Rational r)
+        public double ToDouble()
         {
             double result;
 
-            result = Convert.ToDouble(r.numerator) / Convert.ToDouble(r.denominator);
+            result = Convert.ToDouble(numerator) / Convert.ToDouble(denominator);
 
             return result;
         }
 
-        public int Reduce(Rational r)
+        public int Reduce()
         {
             int a, b, temp;
-            a = Math.Abs(r.numerator);
-            b = Math.Abs(r.denominator);
+            a = Math.Abs(numerator);
+            b = Math.Abs(denominator);
             // gcd(36, 20) = gcd(20, 16) = gcd(16, 4) = gcd(4, 0) = 4
 
             while (b != 0)
@@ -64,7 +64,7 @@
             return a;
         }
 
-        public static string Add(Rational r1, Rational r2)
+        public static string Add(Rational r1, Rational r2) // static method
         {
             string returnString;
             int GCD;
@@ -74,7 +74,7 @@
             newRational.numerator = r1.numerator + r2.numerator;
             newRational.denominator = r1.denominator + r2.denominator;
 
-            GCD = newRational.Reduce(newRational);
+            GCD = newRational.Reduce();
 
             newRational.numerator = newRational.numerator / GCD;
             newRational.denominator = newRational.denominator / GCD;
@@ -84,7 +84,7 @@
             return returnString;
         }
 
-        public string Add2(Rational r2)
+        public string Add2(Rational r2) // instance method
         {
             string returnString;
             int GCD;
@@ -94,7 +94,7 @@
             newRational.numerator = this.numerator + r2.numerator;
             newRational.denominator = this.denominator + r2.denominator;
 
-            GCD = newRational.Reduce(newRational);
+            GCD = newRational.Reduce();
 
             newRational.numerator = (newRational.numerator / GCD);
             newRational.denominator = (newRational.denominator / GCD);
@@ -112,18 +112,18 @@
             rational1.numerator = 20;
             rational1.denominator = 36;
 
-            Console.WriteLine(rational1.WriteRational(rational1));
+            Console.WriteLine(rational1.WriteRational());
 
             rational1.Negate();
-            Console.WriteLine(rational1.WriteRational(rational1));
+            Console.WriteLine(rational1.WriteRational());
 
-            rational1.Invert(rational1);
-            Console.WriteLine(rational1.WriteRational(rational1));
+            rational1.Invert();
+            Console.WriteLine(rational1.WriteRational());
 
-            rational1.ToDouble(rational1);
-            Console.WriteLine(rational1.ToDouble(rational1));
+            rational1.ToDouble();
+            Console.WriteLine(rational1.ToDouble());
 
-            Console.WriteLine(rational1.Reduce(rational1));
+            Console.WriteLine(rational1.Reduce());
 
             Console.WriteLine(Rational.Add(rational1, rational2));
             Console.WriteLine(rational1.Add2(rational2));
